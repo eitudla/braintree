@@ -2,8 +2,13 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-
 var braintree = require("braintree");
+var bodyParser = require('body-parser');
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
@@ -24,9 +29,21 @@ app.all('/*', function(req, res, next) {
   }
 });
 
+//generate token
 app.get("/client_token", function (req, res) {
   gateway.clientToken.generate({}, function (err, response) {
     res.send(response.clientToken);
+  });
+});
+
+app.post("/create", function (req, res) {
+  gateway.customer.create({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    paymentMethodNonce: req.body.nonce,
+    email: req.body.email,
+  }, function (err, result) {
+      res.send(result);
   });
 });
 
