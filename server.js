@@ -60,5 +60,22 @@ app.post("/transaction", function (req, res) {
 });
 
 
+app.post("/customer", function (req, res) {
+  gateway.customer.find("theCustomerId", function(err, customer) {
+    res.send(customer);
+  });
+});
+
+
+app.post("/paymentmethod", function (req, res) {
+  gateway.paymentMethod.create({
+    customerId: req.body.braintreeId,
+    paymentMethodNonce: req.body.nonce
+  }, function (err, result) { 
+      res.send(result);
+  });
+});
+
+
 server.listen(8082);
 console.log('Braintree API listening to 8082');
