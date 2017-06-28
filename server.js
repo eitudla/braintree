@@ -61,7 +61,7 @@ app.post("/transaction", function (req, res) {
 
 
 app.post("/customer", function (req, res) {
-  gateway.customer.find("theCustomerId", function(err, customer) {
+  gateway.customer.find(req.body.braintreeId, function(err, customer) {
     res.send(customer);
   });
 });
