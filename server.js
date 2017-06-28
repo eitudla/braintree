@@ -50,7 +50,7 @@ app.post("/create", function (req, res) {
 app.post("/transaction", function (req, res) {
   gateway.transaction.sale({
     amount: req.body.price,
-    paymentMethodNonce: req.body.paymentMethodNonce,
+    paymentMethodNonce: req.body.nonce,
     options: {
       submitForSettlement: true
     }
