@@ -1,0 +1,9 @@
+{
+  "name": "braintree-api",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "braintree": "^2.1.1",
+    "express": "^4.15.2"
+  }
+}
