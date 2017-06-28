@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
   merchantId: "y9qrg3qv8d94vvcx",
-  publicKey: "3kryw2vftgqgv6sf",
-  privateKey: "b0daaf79a3dc6c90c7dbe3398bc565e8"
+  publicKey: "7hjjtrxwkx5wy58f",
+  privateKey: "a792848fed4d835e0cce6aea639eadd6"
 });
 
 //Allow CORS
