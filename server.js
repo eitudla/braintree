@@ -47,6 +47,18 @@ app.post("/create", function (req, res) {
   });
 });
 
+app.post("/transaction", function (req, res) {
+  gateway.transaction.sale({
+    amount: req.body.price,
+    paymentMethodNonce: req.body.paymentMethodNonce,
+    options: {
+      submitForSettlement: true
+    }
+  }, function (err, result) {
+    res.send(result);
+  });
+});
+
 
 server.listen(8082);
 console.log('Braintree API listening to 8082');
